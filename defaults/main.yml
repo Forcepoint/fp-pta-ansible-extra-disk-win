@@ -1,0 +1,7 @@
+---
+# defaults file for extra-disk-win
+
+extra_disk_win_drive_letter: D
+extra_disk_win_drive_name: Extra
+extra_disk_win_disk_id: 1
+extra_disk_win_fs_format: NTFS
