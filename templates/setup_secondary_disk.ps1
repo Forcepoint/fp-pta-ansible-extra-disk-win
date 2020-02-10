@@ -21,3 +21,4 @@ Configuration setup_secondary_disk
         }
     }
 }
+setup_secondary_disk

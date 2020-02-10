@@ -17,9 +17,6 @@
 - name: create the dsc configuration
   win_shell: C:\setup_secondary_disk.ps1
 
-- name: allow remote signed powershell scripts
-  win_shell: Set-ExecutionPolicy RemoteSigned
-  
 - name: apply the configuration
   win_shell: Start-DscConfiguration -Path C:\setup_secondary_disk -Verbose -Wait
 
