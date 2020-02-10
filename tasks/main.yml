@@ -16,6 +16,9 @@
 
 - name: create the dsc configuration
   win_shell: . C:\setup_secondary_disk.ps1
+  args:
+    chdir: C:\
+    creates: C:\setup_secondary_disk
 
 - name: apply the configuration
   win_shell: Start-DscConfiguration -Path C:\setup_secondary_disk -Verbose -Wait
