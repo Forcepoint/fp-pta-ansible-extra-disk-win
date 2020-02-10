@@ -22,6 +22,8 @@
 
 - name: apply the configuration
   win_shell: Start-DscConfiguration -Path C:\setup_secondary_disk -Verbose -Wait
+  args:
+    chdir: C:\
 
 - name: remove the disk setup script
   win_file:
