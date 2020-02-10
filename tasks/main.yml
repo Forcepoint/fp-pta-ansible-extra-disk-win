@@ -1,25 +1,16 @@
 ---
 # tasks file for extra-disk-win
 
-# https://github.com/PowerShell/StorageDsc/wiki#getting-started
-- name: install StorageDsc module
-  win_psmodule:
-    name: StorageDsc
-    repository: PSGallery
+- name: create the partition
+  win_partition:
+    drive_letter: "{{ extra_disk_win_drive_letter }}"
+    partition_size: -1
+    partition_number: "{{ extra_disk_win_disk_id }}"
+    disk_number: "{{ extra_disk_win_disk_id }}"
     state: present
-# Verify install: Get-DscResource -Module StorageDsc
 
-- name: wait for secondary disk
-  win_dsc:
-    resource_name: WaitForDisk
-    DiskId: "{{ extra_disk_win_disk_id }}"
-    RetryIntervalSec: 5
-    RetryCount: 12
-
-- name: setup secondary disk
-  win_dsc:
-    resource_name: Disk
-    DiskId: "{{ extra_disk_win_disk_id }}"
-    DriveLetter: "{{ extra_disk_win_drive_letter }}"
-    FSLabel: "{{ extra_disk_win_drive_name }}"
-    FSFormat: "{{ extra_disk_win_fs_format }}"
+- name: format the volume
+  win_format:
+    drive_letter: "{{ extra_disk_win_drive_letter }}"
+    file_system: "{{ extra_disk_win_fs_format }}"
+    new_label: "{{ extra_disk_win_drive_name }}"
