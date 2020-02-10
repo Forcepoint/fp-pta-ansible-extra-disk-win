@@ -1,6 +1,13 @@
 ---
 # tasks file for extra-disk-win
 
+- name: initialize the disk
+  win_initialize_disk:
+    disk_number: "{{ extra_disk_win_disk_id }}"
+    force: no
+    online: yes
+    style: gpt
+
 - name: create the partition
   win_partition:
     drive_letter: "{{ extra_disk_win_drive_letter }}"
