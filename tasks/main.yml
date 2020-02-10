@@ -14,13 +14,13 @@
     src: templates/setup_secondary_disk.ps1
     dest: C:\setup_secondary_disk.ps1
 
-- name: wait for secondary disk
+- name: setup the secondary disk
   win_shell: C:\setup_secondary_disk.ps1
 
-- name: remote the disk setup script
-  win_file:
-    path: C:\setup_secondary_disk.ps1
-    state: absent
+#- name: remove the disk setup script
+#  win_file:
+#    path: C:\setup_secondary_disk.ps1
+#    state: absent
 
 #- name: initialize the disk
 #  win_initialize_disk:
