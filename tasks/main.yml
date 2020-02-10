@@ -9,20 +9,18 @@
     state: present
 # Verify install: Get-DscResource -Module StorageDsc
 
-- name: wait for secondary disk
-  win_dsc:
-    resource_name: WaitForDisk
-    DiskId: "{{ extra_disk_win_disk_id }}"
-    RetryIntervalSec: 5
-    RetryCount: 12
+- name: copy the disk setup script
+  win_template:
+    src: templates/setup_secondary_disk.ps1
+    dest: C:\setup_secondary_disk.ps1
 
-- name: setup secondary disk
-  win_dsc:
-    resource_name: Disk
-    DiskId: "{{ extra_disk_win_disk_id }}"
-    DriveLetter: "{{ extra_disk_win_drive_letter }}"
-    FSLabel: "{{ extra_disk_win_drive_name }}"
-    FSFormat: "{{ extra_disk_win_fs_format }}"
+- name: wait for secondary disk
+  win_shell: C:\setup_secondary_disk.ps1
+
+- name: remote the disk setup script
+  win_file:
+    path: C:\setup_secondary_disk.ps1
+    state: absent
 
 #- name: initialize the disk
 #  win_initialize_disk:
