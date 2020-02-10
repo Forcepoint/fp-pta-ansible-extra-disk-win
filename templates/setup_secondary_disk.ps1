@@ -1,4 +1,4 @@
-Configuration WaitForDisk_InitializeDataDisk
+Configuration setup_secondary_disk
 {
     Import-DSCResource -ModuleName StorageDsc
 

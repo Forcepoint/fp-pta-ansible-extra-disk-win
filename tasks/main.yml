@@ -14,13 +14,21 @@
     src: templates/setup_secondary_disk.ps1
     dest: C:\setup_secondary_disk.ps1
 
-- name: setup the secondary disk
-  win_shell: C:\setup_secondary_disk.ps1
+- name: create the dsc configuration
+  win_shell: . C:\setup_secondary_disk.ps1
 
-#- name: remove the disk setup script
-#  win_file:
-#    path: C:\setup_secondary_disk.ps1
-#    state: absent
+- name: apply the configuration
+  win_shell: Start-DscConfiguration -Path C:\setup_secondary_disk -Verbose -Wait
+
+- name: remove the disk setup script
+  win_file:
+    path: C:\setup_secondary_disk.ps1
+    state: absent
+
+- name: remove the configuration directory
+  win_file:
+    path: C:\setup_secondary_disk
+    state: absent
 
 #- name: initialize the disk
 #  win_initialize_disk:
