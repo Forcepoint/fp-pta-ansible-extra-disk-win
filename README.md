@@ -4,6 +4,8 @@ Mounts and formats an extra disk for use on Windows. See https://github.com/Powe
 for information about the Powershell DSC module being used here. At the time of this writing, there were no ansible
 modules available for managing windows disks directly, so a Powershell DSC module was used instead.
 
+For information about PTA and how to use it with this Ansible role please visit https://github.com/Forcepoint/fp-pta-overview/blob/master/README.md
+
 ## Requirements
 
 The disk exists.
