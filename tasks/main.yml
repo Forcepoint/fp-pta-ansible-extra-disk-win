@@ -20,6 +20,9 @@
     chdir: C:\
     creates: C:\setup_secondary_disk
 
+- name: set execution policy
+  ansible.windows.win_shell: Set-ExecutionPolicy RemoteSigned
+
 - name: apply the configuration
   win_shell: Start-DscConfiguration -Path C:\setup_secondary_disk -Verbose -Wait
   args:
